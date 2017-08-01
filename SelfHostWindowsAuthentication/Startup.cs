@@ -14,6 +14,8 @@ namespace SelfHostWindowsAuthentication
     {
         public void Configuration(IAppBuilder app)
         {
+            app.Map("/windows", ConfigureWindowsTokenProvider);
+
             var options = new IdentityServerOptions
             {
                 SiteName = Application.Title,
@@ -21,23 +23,22 @@ namespace SelfHostWindowsAuthentication
                 Factory = CreateInMemoryServiceFactory(),
                 AuthenticationOptions = new AuthenticationOptions
                 {
-                    EnableLocalLogin = false,
+                    EnableLocalLogin = true,
                     IdentityProviders = ConfigureIdentityProviders
                 }
             };
             app.UseIdentityServer(options);
-            app.Map("/windows", ConfigureWindowsTokenProvider);
         }
 
         private static void ConfigureWindowsTokenProvider(IAppBuilder app)
         {
+            app.UseWindowsAuthentication();
             app.UseWindowsAuthenticationService(new WindowsAuthenticationOptions
             {
-                IdpReplyUrl = Application.StsWindowsUrl,
+                IdpReplyUrl = Application.StsWindowsAuth,
                 IdpRealm = "urn:idsrv3",
                 SigningCertificate = Certificate.Get()
             });
-            app.UseWindowsAuthentication();
         }
 
         private static void ConfigureIdentityProviders(IAppBuilder app, string signInAsType)
