@@ -7,12 +7,12 @@ namespace SelfHostWindowsAuthentication
     {
         private static void Main(string[] args)
         {
-            Console.Title = "IdentityServer3 SelfHost with windows authentication";
+            Console.Title = Application.Title;
 
-            const string url = "https://localhost:44333";
-            using (WebApp.Start<Startup>(url))
+            using (WebApp.Start<Startup>(Application.StsUrl))
             {
-                Console.WriteLine("\n\nServer listening at {0}. Press enter to stop", url);
+                Console.WriteLine("\n\nServer listening at {0}. Press enter to stop", 
+                    Application.StsUrl);
                 Console.ReadLine();
             }
         }
