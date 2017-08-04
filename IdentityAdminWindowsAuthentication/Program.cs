@@ -10,12 +10,14 @@ namespace IdentityAdminWindowsAuthentication
 {
     class Program
     {
+        public static string IdentityAdminUrl => "https://localhost:44333";
+
         static void Main(string[] args)
         {
-            using (WebApp.Start<Startup>(Application.IdentityAdminUrl))
+            using (WebApp.Start<Startup>(IdentityAdminUrl))
             {
                 Console.WriteLine("\n\nServer listening at {0}. Press enter to stop",
-                    Application.IdentityAdminUrl);
+                    IdentityAdminUrl);
                 Console.ReadLine();
             }
         }
