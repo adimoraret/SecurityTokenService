@@ -11,7 +11,7 @@ namespace IdentityAdminWindowsAuthentication
         public Task TransformAsync(CustomClaimsProviderContext context)
         {
             if (context.WindowsPrincipal.IsInRole(AdminWindowsGroupName))
-                context.OutgoingSubject.AddClaim(new Claim("IsIdentityAdministrator","true"));
+                context.OutgoingSubject.AddClaim(new Claim("IdentityAdmin", "IdentityAdmin"));
             return Task.FromResult(0);
         }
 

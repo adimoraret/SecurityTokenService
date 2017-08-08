@@ -26,8 +26,8 @@ namespace IdentityAdminWindowsAuthentication
 
                 adminApp.UseWsFederationAuthentication(new WsFederationAuthenticationOptions
                 {
-                    AuthenticationType = "Cookies",
-                    MetadataAddress = "http://localhost:44333/windows",
+                    SignInAsAuthenticationType = "Cookies",
+                    MetadataAddress = "https://localhost:44333/windows",
                     Wtrealm = "urn:idsrv3"
                 });
 
@@ -37,9 +37,9 @@ namespace IdentityAdminWindowsAuthentication
                     AdminSecurityConfiguration = new AdminHostSecurityConfiguration
                     {
                         HostAuthenticationType = "Cookies",
-                        AdminRoleName = "Admin",
-                        NameClaimType = "IsIdentityAdministrator",
-                        RoleClaimType = "true",
+                        NameClaimType = "name",
+                        AdminRoleName = "IdentityAdmin",
+                        RoleClaimType = "IdentityAdmin"
                     }
                 });
             });
@@ -47,7 +47,6 @@ namespace IdentityAdminWindowsAuthentication
 
         private static void ConfigureWindowsTokenProvider(IAppBuilder app)
         {
-            app.UseWindowsAuthentication();
             app.UseWindowsAuthenticationService(new WindowsAuthenticationOptions
             {
                 IdpReplyUrl = "https://localhost:44333/",
@@ -55,6 +54,7 @@ namespace IdentityAdminWindowsAuthentication
                 SigningCertificate = Certificate.Get(),
                 CustomClaimsProvider = new AdditionalCustomClaimsProvider()
             });
+            app.UseWindowsAuthentication();
         }
 
         private static IdentityAdminServiceFactory CreateIdentityAdminServiceFactory()
