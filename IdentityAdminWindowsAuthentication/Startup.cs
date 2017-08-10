@@ -39,7 +39,7 @@ namespace IdentityAdminWindowsAuthentication
                         HostAuthenticationType = "Cookies",
                         NameClaimType = "name",
                         AdminRoleName = "IdentityAdmin",
-                        RoleClaimType = "IdentityAdmin"
+                        RoleClaimType = "IdentityAdmin",
                     }
                 });
             });
