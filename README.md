@@ -1,7 +1,14 @@
 # SecurityTokenService implementations
-## SelfHosted Security Token Service with Windows Authentication
-Before Windows login
 
+[![Build Status](https://travis-ci.org/adimoraret/SecurityTokenService.svg?branch=master)](https://travis-ci.org/adimoraret/SecurityTokenService.svg?branch=master)
+
+## Table of Contents
+* [SelfHosted Security Token Service with Windows Authentication](https://github.com/adimoraret/SecurityTokenService#selfhosted-security-token-service-with-windows-authentication)
+* [Security Token Service Administration protected with Windows Authentication](https://github.com/adimoraret/SecurityTokenService#security-token-service-administration-protected-with-windows-authentication)
+
+## SelfHosted Security Token Service with Windows Authentication
+
+Before Windows login
 ![Sts self host with windows authentication](assets/SelfHostWindowsAuthentication/self-host-windows-authentication.png "Sts self host with windows authentication")
 
 After Windows login
